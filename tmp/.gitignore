@@ -1,13 +1,6 @@
 # \ <section:top>
-*~
-*.swp
-*.log
+*
 # / <section:top>
-# \ <section:mid>
-/target/
-/Cargo.lock
-*.o
-# / <section:mid>
 # \ <section:bot>
 !.gitignore
 # / <section:bot>

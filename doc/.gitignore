@@ -1,1 +1,6 @@
+# \ <section:mid>
 *.pdf
+# / <section:mid>
+# \ <section:bot>
+!.gitignore
+# / <section:bot>
