@@ -1,5 +1,5 @@
 # \ <section:top>
-*.pdf
+*
 # / <section:top>
 # \ <section:bot>
 !.gitignore
