@@ -1,5 +1,5 @@
 #include <rustpill.h>
-void main() {
+int main() {
     while (true) {
     }
 }

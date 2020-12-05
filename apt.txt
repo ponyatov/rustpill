@@ -1,5 +1,6 @@
 git make wget
 curl
+clang clang-tools
 putty
 gcc-arm-none-eabi gdb-arm-none-eabi openocd
 stlink-tools stlink-gui

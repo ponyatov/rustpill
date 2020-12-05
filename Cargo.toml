@@ -1,11 +1,18 @@
 # \ <section:package>
 [package]
-name      = "rustpill"
-version   = "0.0.1"
-authors   = ["Dmitry Ponyatov <dponyatov@gmail.com>"]
+name                   = "rustpill"
+version                = "0.0.1"
+authors                = ["Dmitry Ponyatov <dponyatov@gmail.com>"]
 # / <section:package>
-edition   = "2018"
+edition                = "2018"
 # \ <section:dependencies>
 [dependencies]
-lazy_static = ""
+lazy_static            = "*"
+cargo-binutils         = "*"
+cortex-m               = "*"
+cortex-m-rt            = "*"
+cortex-m-semihosting   = "*"
+panic-halt             = "*"
+nb                     = "*"
+embedded-hal           = "*"
 # / <section:dependencies>

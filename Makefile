@@ -1,34 +1,38 @@
 # \ <section:var>
-MODULE    = $(notdir $(CURDIR))
-OS        = $(shell uname -s)
-MACHINE   = $(shell uname -m)
-NOW       = $(shell date +%d%m%y)
-REL       = $(shell git rev-parse --short=4 HEAD)
-TARGET    = arm-none-eabi
+MODULE     = $(notdir $(CURDIR))
+OS         = $(shell uname -s)
+MACHINE    = $(shell uname -m)
+NOW        = $(shell date +%d%m%y)
+REL        = $(shell git rev-parse --short=4 HEAD)
+HW        ?= pill030
+include       hw/$(HW).mk
+include      cpu/$(SoC).mk
 # / <section:var>
 # \ <section:dir>
-CWD       = $(CURDIR)
-DOC       = $(CWD)/doc
-BIN       = $(CWD)/bin
-SRC       = $(CWD)/src
-TMP       = $(CWD)/tmp
-CARGOBIN  = $(HOME)/.cargo/bin
-FW        = $(CWD)/firmware
+CWD        = $(CURDIR)
+DOC        = $(CWD)/doc
+BIN        = $(CWD)/bin
+SRC        = $(CWD)/src
+TMP        = $(CWD)/tmp
+CARGOBIN   = $(HOME)/.cargo/bin
+FW         = $(CWD)/firmware
 # / <section:dir>
 # \ <section:tool>
-WGET      = wget -c
-RUSTUP    = $(CARGOBIN)/rustup
-CARGO     = $(CARGOBIN)/cargo
-RUSTC     = $(CARGOBIN)/rustc
-HOSTCC    = $(CC)
-CC        = $(TARGET)-gcc
-HOSTCXX   = $(CXX)
-CXX       = $(TARGET)-g++
-LD        = $(TARGET)-ld
-AS        = $(TARGET)-as
-SIZE      = $(TARGET)-size
-OBJDUMP   = $(TARGET)-objdump
-GDB       = $(TARGET)-gdb
+WGET       = wget -c
+RUSTUP     = $(CARGOBIN)/rustup
+CARGO      = $(CARGOBIN)/cargo
+RUSTC      = $(CARGOBIN)/rustc
+HOSTCC     = $(CC)
+CC         = $(TARGET)-gcc
+HOSTCXX    = $(CXX)
+CXX        = $(TARGET)-g++
+LD         = $(TARGET)-ld
+AS         = $(TARGET)-as
+SIZE       = $(TARGET)-size
+OBJDUMP    = $(TARGET)-objdump
+GDB        = $(TARGET)-gdb
+CC         = clang --target=$(TARGET)
+SIZE       = llvm-size
 # / <section:tool>
 # \ <section:obj>
 # \ <section:c>
@@ -44,13 +48,17 @@ OBJ += $(FW)/rustpill.elf
 # / <section:obj>
 # \ <section:cfg>
 # \ <section:cflags>
-CFLAGS += -O0 -g3
-CFLAGS += -I$(SRC)
+CFLAGS    += -mcpu=$(CPU) $(THUMB)
+CFLAGS    += -O0 -g3
+CFLAGS    += -I$(SRC)
 # / <section:cflags>
 # / <section:cfg>
 # \ <section:all>
 .PHONY: all
-all: $(S) $(OBJ)	
+all: $(S)	
+	# \ <section:body>
+	$(CARGO) run $(MODULE).ini
+	# / <section:body>
 # / <section:all>
 # \ <section:rules>
 $(FW)/rustpill.elf: $(C) $(H) Makefile
@@ -65,7 +73,7 @@ install: $(OS)_install
 	$(MAKE)   $(RUSTUP)
 	$(RUSTUP) update
 	$(RUSTUP) component add rustfmt
-	$(CARGO)  install   cargo-binutils
+	$(RUSTUP) component add llvm-tools-preview
 	# / <section:body>
 	# \ <section:post>
 	$(CARGO)  build
