@@ -3,8 +3,6 @@
 
 (c) Dmitry Ponyatov <<dponyatov@gmail.com>> 2020 MIT
 
-* https://www.youtube.com/watch?v=IEniVrjncdk
-
 github: https://github.com/ponyatov/rustpill
 
 
