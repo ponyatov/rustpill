@@ -7,12 +7,17 @@ authors                = ["Dmitry Ponyatov <dponyatov@gmail.com>"]
 edition                = "2018"
 # \ <section:dependencies>
 [dependencies]
-lazy_static            = "*"
 cargo-binutils         = "*"
 cortex-m               = "*"
 cortex-m-rt            = "*"
 cortex-m-semihosting   = "*"
 panic-halt             = "*"
-nb                     = "*"
-embedded-hal           = "*"
+[dependencies.stm32f1xx-hal]
+features               = ["stm32f100","rt"]
 # / <section:dependencies>
+# \ <section:bin>
+[[bin]]
+name                   = "rustpill"
+test                   = false
+bench                  = false
+# / <section:bin>

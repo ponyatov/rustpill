@@ -25,4 +25,5 @@ github: https://github.com/ponyatov/rustpill
 * https://docs.rust-embedded.org/
     * [The Discovery book](https://docs.rust-embedded.org/discovery/)
     * [The embedded Rust book](https://docs.rust-embedded.org/book/)
+* https://github.com/rust-embedded/cortex-m-quickstart
 

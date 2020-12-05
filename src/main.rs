@@ -1,12 +1,15 @@
 // \ <section:top>
-use std::env;
+#![no_std]
+#![no_main]
+use cortex_m::asm;
+use cortex_m_rt::entry;
 // / <section:top>
-fn main() {
-    // \ <section:main>
-    // \ <section:args>
-    let argv: Vec<String> = env::args().collect();
-    let argc = argv.len();
-    for i in 0..argc { println!("argv[{}] = {:?}",i,argv[i]); }
-    // / <section:args>
-    // / <section:main>
+// \ <section:main>
+#[entry]
+fn main() -> ! {
+    asm::nop();
+    loop {
+        asm::nop();
+    }
 }
+// / <section:main>

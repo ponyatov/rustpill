@@ -22,6 +22,7 @@ WGET       = wget -c
 RUSTUP     = $(CARGOBIN)/rustup
 CARGO      = $(CARGOBIN)/cargo
 RUSTC      = $(CARGOBIN)/rustc
+# \ <section:cc>
 HOSTCC     = $(CC)
 CC         = $(TARGET)-gcc
 HOSTCXX    = $(CXX)
@@ -31,8 +32,7 @@ AS         = $(TARGET)-as
 SIZE       = $(TARGET)-size
 OBJDUMP    = $(TARGET)-objdump
 GDB        = $(TARGET)-gdb
-CC         = clang --target=$(TARGET)
-SIZE       = llvm-size
+# / <section:cc>
 # / <section:tool>
 # \ <section:obj>
 # \ <section:c>
@@ -57,7 +57,7 @@ CFLAGS    += -I$(SRC)
 .PHONY: all
 all: $(S)	
 	# \ <section:body>
-	$(CARGO) run $(MODULE).ini
+	$(CARGO) build
 	# / <section:body>
 # / <section:all>
 # \ <section:rules>
@@ -74,6 +74,7 @@ install: $(OS)_install
 	$(RUSTUP) update
 	$(RUSTUP) component add rustfmt
 	$(RUSTUP) component add llvm-tools-preview
+	$(RUSTUP) target    add thumbv7m-none-eabi
 	# / <section:body>
 	# \ <section:post>
 	$(CARGO)  build
