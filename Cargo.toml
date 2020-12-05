@@ -1,0 +1,11 @@
+# \ <section:package>
+[package]
+name      = "rustpill"
+version   = "0.0.1"
+authors   = ["Dmitry Ponyatov <dponyatov@gmail.com>"]
+# / <section:package>
+edition   = "2018"
+# \ <section:dependencies>
+[dependencies]
+lazy_static = ""
+# / <section:dependencies>

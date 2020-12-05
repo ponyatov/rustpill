@@ -1,0 +1,5 @@
+git make wget
+curl
+putty
+gcc-arm-none-eabi gdb-arm-none-eabi openocd
+stlink-tools stlink-gui

@@ -1,0 +1,10 @@
+# \ <section:top>
+*~
+*.swp
+*.log
+# / <section:top>
+# \ <section:mid>
+/target/
+/Cargo.lock
+*.o
+# / <section:mid>
